@@ -1,0 +1,9 @@
+<h1>Admin Dashboard</h>
+<br></br>
+<h2>Events:</h2>
+{{#each events}}
+  {{title}} {{date}}
+  <a href='/eventInfo/{{_id}}' class='btn btn-primary'>More Info</a>
+{{/each}}
+<br></br>
+<a href='/event' class='btn btn-primary'>Add an Event</a>

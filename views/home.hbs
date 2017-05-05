@@ -1,0 +1,12 @@
+
+{{#if isAdmin}}
+  <a href='/admin'>Admin Dashboard</a>
+{{/if}}
+
+<h1>Hi normal ass user!</h1>
+
+<h2>Upcoming Events:</h2>
+{{#each events}}
+  {{title}} {{date}}
+  <a href='/eventView/{{_id}}' class='btn btn-info'>More Info</a>
+{{/each}}

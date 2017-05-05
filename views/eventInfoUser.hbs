@@ -1,0 +1,23 @@
+Here are the details for this event:
+<br></br>
+{{#with event}}
+Date: {{date}}
+<br></br>
+Latitude: {{latitude}}
+<br></br>
+Longitude: {{longitude}}
+<br></br>
+Radius: {{radius}}
+<br></br>
+Notes: {{notes}}
+<br></br>
+Assisting:
+{{#each assistants}}
+  <li>{{firstName}} {{lastName}} {{phoneNumber}}</li>
+{{/each}}
+<br></br>
+<a href='/eventCheckIn/{{_id}}' class="btn btn-info">Check in to event</a>
+<br></br>
+{{/with}}
+<br></br>
+<a href='/home' class="btn btn-primary">Back</a>

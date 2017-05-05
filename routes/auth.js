@@ -12,13 +12,18 @@ module.exports = function(passport) {
     	if (req.body.username && req.body.password && (req.body.password == req.body.passwordRepeat)) {
     		var u = new User({
     			username: req.body.username,
-    			password: req.body.password
+    			password: req.body.password,
+          isAdmin: false,
+          isPrimaryAdmin: false,
+          firstName: req.body.firstName,
+          lastName: req.body.lastName,
+          phoneNumber: req.body.phoneNumber
     		}).save(function(err) {
     			if (err) {
     				res.status(400).send(err)
     			}
     			else {
-    				res.redirect('/admin')
+    				res.redirect('/home')
     			}
     		})
     	}
@@ -35,7 +40,7 @@ module.exports = function(passport) {
     router.post('/login',
     	passport.authenticate('local'),
     	function(req, res) {
-    		res.redirect('/admin');
+    		res.redirect('/home');
     	});
 
     router.get('/logout', function(req, res) {

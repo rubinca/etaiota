@@ -19,6 +19,71 @@ var models = {
     password: {
       type: String,
       required: true
+    },
+    isAdmin: {
+      type: String,
+      required: true
+    },
+    isPrimaryAdmin: {
+      type: String,
+      required: true
+    },
+    firstName: {
+      type: String,
+      required: true
+    },
+    lastName: {
+      type: String,
+      required: true
+    },
+    phoneNumber: {
+      type: String,
+      required: true
+    }
+  }),
+  Event: mongoose.model('Event', {
+    title: {
+      type: String,
+      required: true
+    },
+    date: {
+      type: Date,
+      required: true
+    },
+    latitude: {
+      type: String,
+      required: true
+    },
+    longitude: {
+      type: String,
+      required: true
+    },
+    radius: {
+      type: String,
+      required: true
+    },
+    owner: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User'
+    },
+    assistants: [{
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User'
+    }],
+    participants: [{
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User'
+    }],
+    participantsCheckedIn: [{
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User'
+    }],
+    participantsCheckedOut: [{
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User'
+    }],
+    notes: {
+      type: String
     }
   })
 };

@@ -1,0 +1,28 @@
+Hi {{ownerName}}! Here are the details for your event:
+<br></br>
+{{#with event}}
+Date: {{this.date}}
+<br></br>
+Latitude: {{this.latitude}}
+<br></br>
+Longitude: {{this.longitude}}
+<br></br>
+Radius: {{this.radius}}
+<br></br>
+Notes: {{this.notes}}
+<br></br>
+Assistants:
+{{#each assistants}}
+  <li>{{firstName}} {{lastName}} {{phoneNumber}}</li>
+{{/each}}
+<br></br>
+Participants:
+{{#each participants}}
+  <li>{{firstName}} {{lastName}} {{phoneNumber}}</li>
+{{/each}}
+<br></br>
+<a href='/event/{{_id}}' class="btn btn-info">Edit Event</a>
+<br></br>
+{{/with}}
+<br></br>
+<a href='/admin' class="btn btn-primary">Back</a>
