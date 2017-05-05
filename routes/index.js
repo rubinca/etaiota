@@ -50,6 +50,10 @@ router.get('/user', function(req, res, next) {
       })
 })
 
+router.get('/hi', function(req, res, next) {
+  res.render('hi');
+})
+
 
 //admin only routes
 router.use(function(req, res, next) {
