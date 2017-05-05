@@ -43,8 +43,11 @@ router.get('/validateCheckIn', function(req, res, next) {
 				})
 })
 
-router.get('/hello', function(req, res, next) {
-  console.log('hello!');
+router.get('/user', function(req, res, next) {
+  User.findOne({"_id": req.user._id})
+      .then(function(user) {
+        res.render('user', {"user": user});
+      })
 })
 
 

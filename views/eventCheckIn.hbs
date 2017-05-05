@@ -8,7 +8,7 @@
       /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
       #map {
-        height: 100%;
+        height: 30%;
       }
       /* Optional: Makes the sample page fill the window. */
       html, body {
@@ -19,10 +19,25 @@
     </style>
   </head>
   <body>
-    <div class="alert alert-success" style="display:none" role="alert">
+    <div class="alert alert-warning" style="display:none" id='warning' role="alert">
+      <strong>All done!</strong> You've already checked into this event.
+    </div>
+    <div class="alert alert-info" id='info' role="alert">
+      <strong>Please wait.</strong> We're working on checking you in.
+    </div>
+    <div class="alert alert-danger" style="display:none" id='danger' role="alert">
+      <strong>Oops!</strong> Your check-in didn't work. See below for instructions.
+    </div>
+    <div class="alert alert-success" style="display:none" id= 'success' role="alert">
       <strong>All done!</strong> You've successfully checked in to this event.
     </div>
     <div id="map"></div>
+    </br>
+    <h2>Check-in didn't work?</h2>
+    If you've gotten a red alert message, you'll have to check in manually. Press the button below to go to your profile, and show it to the check-in team at the door.</br>
+    <a href='/user' class="btn btn-info">Profile</a>
+    <br></br>
+    <a href='/home' class="btn btn-primary">Back To Home</a>
     <script>
       // Note: This example requires that you consent to location sharing when
       // prompted by your browser. If you see the error "The Geolocation service
@@ -51,7 +66,8 @@
             var url = window.location.toString().substring(0, window.location.toString().indexOf('eventCheckIn')) + 'validateCheckIn?userId='+ '{{userId}}' + '&eventId=' + '{{event._id}}';
             console.log(url)
             $.get(url, function(response) {
-              $('.alert').show();
+              $('#info').hide();
+              $('#success').show();
             });
           }, function() {
             handleLocationError(true, infoWindow, map.getCenter());
@@ -63,6 +79,11 @@
       }
 
       function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+        $.get(url, function(response) {
+          $('#info').hide();
+          $('#danger').show();
+        });
+
         infoWindow.setPosition(pos);
         infoWindow.setContent(browserHasGeolocation ?
                               'Error: The Geolocation service failed.' :
