@@ -1,11 +1,14 @@
 <p id="hello"></p>
 <script>
+  $('#hello').text('Trying!');
   navigator.geolocation.getCurrentPosition(show_map);
 
   function show_map(position) {
+    $('#hello').text('Got into the function!');
     var lat = position.coords.latitude;
     var long = position.coords.longitude;
 
+    $('#hello').text('Got beneath the vars!');
     console.log(lat, long);
     $('#hello').text(lat + " " + long);
   }
